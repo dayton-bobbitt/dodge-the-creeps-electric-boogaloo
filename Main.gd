@@ -6,11 +6,12 @@ var score
 
 func _ready():
 	randomize()
-	new_game()
 
 
 func new_game():
 	score = 0
+	$HUD.update_score(score)
+	$HUD.show_temporary_message("Get ready!")
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 
@@ -23,6 +24,7 @@ func start_game():
 func end_game():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$HUD.game_over()
 
 
 func spawn_enemy():
@@ -43,6 +45,7 @@ func spawn_enemy():
 
 func increment_score():
 	score += 1
+	$HUD.update_score(score)
 
 
 func _on_Player_hit():
@@ -59,3 +62,7 @@ func _on_ScoreTimer_timeout():
 
 func _on_StartTimer_timeout():
 	start_game()
+
+
+func _on_HUD_start_game():
+	new_game()
