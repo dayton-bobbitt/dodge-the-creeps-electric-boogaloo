@@ -10,6 +10,7 @@ func _ready():
 
 func new_game():
 	score = 0
+	get_tree().call_group("mobs", "queue_free")
 	$HUD.update_score(score)
 	$HUD.show_temporary_message("Get ready!")
 	$Player.start($StartPosition.position)
