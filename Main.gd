@@ -15,6 +15,7 @@ func new_game():
 	$HUD.show_temporary_message("Get ready!")
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$Music.play()
 
 
 func start_game():
@@ -26,6 +27,8 @@ func end_game():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.game_over()
+	$Music.stop()
+	$DeathSound.play()
 
 
 func spawn_enemy():
